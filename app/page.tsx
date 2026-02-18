@@ -2,8 +2,9 @@ import Link from 'next/link'
 import { Button } from '@/components/ui/button'
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card'
 import { HomeArticle } from '@/components/home-article'
+import { HomeFAQ, HOME_FAQS } from '@/components/home-faq'
 import { Search, Image as ImageIcon, Link2, FileSearch } from 'lucide-react'
-import { generateMetadata as genMeta } from '@/lib/seo'
+import { generateMetadata as genMeta, generateFAQJSONLD } from '@/lib/seo'
 import type { Metadata } from 'next'
 
 export const metadata: Metadata = genMeta({
@@ -13,8 +14,13 @@ export const metadata: Metadata = genMeta({
 })
 
 export default function HomePage() {
+  const faqSchema = generateFAQJSONLD(HOME_FAQS)
   return (
     <div className="flex flex-col">
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }}
+      />
       {/* Hero Section */}
       <section className="container py-20 md:py-32">
         <div className="flex flex-col items-center text-center space-y-8 max-w-3xl mx-auto">
@@ -114,6 +120,9 @@ export default function HomePage() {
 
       {/* Long-form article: Pic to Pic Search (SEO) */}
       <HomeArticle />
+
+      {/* FAQ Section: 20 long-form FAQs for SEO */}
+      <HomeFAQ />
 
       {/* CTA Section */}
       <section className="container py-16">
