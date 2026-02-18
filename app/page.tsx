@@ -1,6 +1,7 @@
 import Link from 'next/link'
 import { Button } from '@/components/ui/button'
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card'
+import { HomeArticle } from '@/components/home-article'
 import { Search, Image as ImageIcon, Link2, FileSearch } from 'lucide-react'
 import { generateMetadata as genMeta } from '@/lib/seo'
 import type { Metadata } from 'next'
@@ -110,6 +111,9 @@ export default function HomePage() {
           </Card>
         </div>
       </section>
+
+      {/* Long-form article: Pic to Pic Search (SEO) */}
+      <HomeArticle />
 
       {/* CTA Section */}
       <section className="container py-16">

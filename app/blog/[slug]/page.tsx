@@ -12,7 +12,7 @@ import { ArrowRight } from 'lucide-react'
 import remarkGfm from 'remark-gfm'
 import { getMDXComponents } from '@/components/mdx-components'
 
-// Avoid prerender to prevent next-mdx-remote React version mismatch during static export
+// Keep dynamic: static generation hits React version mismatch with next-mdx-remote
 export const dynamic = 'force-dynamic'
 
 export async function generateStaticParams() {
@@ -117,7 +117,7 @@ export default async function BlogPostPage({ params }: { params: Promise<{ slug:
                 {formatDate(post.frontmatter.date)}
               </time>
               <span>•</span>
-              <span>{Math.round(post.readingTime)} min read</span>
+              <span>{Math.round(Number(post.readingTime) || 0)} min read</span>
             </div>
             <p className="text-xl text-muted-foreground">
               {post.frontmatter.description}
@@ -126,7 +126,7 @@ export default async function BlogPostPage({ params }: { params: Promise<{ slug:
 
           <div className="prose prose-lg dark:prose-invert max-w-none mb-12">
             <MDXRemote
-              source={post.content}
+              source={post.content || '\n'}
               components={getMDXComponents()}
               options={{
                 mdxOptions: {

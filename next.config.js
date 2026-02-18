@@ -12,6 +12,9 @@ const nextConfig = {
   },
   experimental: {
     mdxRs: false,
+    outputFileTracingIncludes: {
+      '/blog/[slug]': ['./content/posts/**/*'],
+    },
   },
 }
 
