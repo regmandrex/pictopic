@@ -1,4 +1,5 @@
 import type { Metadata } from 'next'
+import Script from 'next/script'
 import { Inter } from 'next/font/google'
 import './globals.css'
 import { Header } from '@/components/header'
@@ -50,25 +51,31 @@ export default function RootLayout({
 }) {
   const websiteSchema = generateWebsiteJSONLD()
   const organizationSchema = generateOrganizationJSONLD()
+  
+  // Ensure stable JSON serialization
+  const websiteJson = JSON.stringify(websiteSchema)
+  const organizationJson = JSON.stringify(organizationSchema)
 
   return (
     <html lang="en">
       <head>
         <script
-          async
-          src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-8764610479002120"
-          crossOrigin="anonymous"
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: websiteJson }}
+          suppressHydrationWarning
         />
         <script
           type="application/ld+json"
-          dangerouslySetInnerHTML={{ __html: JSON.stringify(websiteSchema) }}
-        />
-        <script
-          type="application/ld+json"
-          dangerouslySetInnerHTML={{ __html: JSON.stringify(organizationSchema) }}
+          dangerouslySetInnerHTML={{ __html: organizationJson }}
+          suppressHydrationWarning
         />
       </head>
       <body className={inter.className}>
+        <Script
+          src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-8764610479002120"
+          strategy="afterInteractive"
+          crossOrigin="anonymous"
+        />
         <Header />
         <main className="min-h-screen">
           {children}

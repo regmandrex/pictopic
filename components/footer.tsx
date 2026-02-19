@@ -57,6 +57,21 @@ export function Footer() {
             </ul>
           </div>
           <div className="space-y-4">
+            <h4 className="text-sm font-semibold">Company</h4>
+            <ul className="space-y-2 text-sm">
+              <li>
+                <Link href="/about" className="text-muted-foreground hover:text-foreground">
+                  About Us
+                </Link>
+              </li>
+              <li>
+                <Link href="/contact" className="text-muted-foreground hover:text-foreground">
+                  Contact
+                </Link>
+              </li>
+            </ul>
+          </div>
+          <div className="space-y-4">
             <h4 className="text-sm font-semibold">Legal</h4>
             <ul className="space-y-2 text-sm">
               <li>
@@ -67,6 +82,11 @@ export function Footer() {
               <li>
                 <Link href="/terms" className="text-muted-foreground hover:text-foreground">
                   Terms of Service
+                </Link>
+              </li>
+              <li>
+                <Link href="/cookie-policy" className="text-muted-foreground hover:text-foreground">
+                  Cookie Policy
                 </Link>
               </li>
             </ul>

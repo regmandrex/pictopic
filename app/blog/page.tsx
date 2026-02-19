@@ -19,12 +19,16 @@ export default function BlogPage() {
     { name: 'Home', url: 'https://pictopicsearch.com' },
     { name: 'Blog', url: 'https://pictopicsearch.com/blog' },
   ])
+  
+  // Ensure stable JSON serialization
+  const breadcrumbJson = JSON.stringify(breadcrumbSchema)
 
   return (
     <>
       <script
         type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbSchema) }}
+        dangerouslySetInnerHTML={{ __html: breadcrumbJson }}
+        suppressHydrationWarning
       />
       <div className="container py-12">
         <nav className="mb-8 text-sm text-muted-foreground">

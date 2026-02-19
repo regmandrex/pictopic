@@ -57,3 +57,49 @@
     @apply bg-background text-foreground;
   }
 }
+
+@layer utilities {
+  /* Enhanced blog post typography */
+  .prose {
+    @apply text-foreground;
+  }
+  
+  .prose p {
+    @apply text-foreground/90;
+  }
+  
+  .prose h1,
+  .prose h2,
+  .prose h3,
+  .prose h4 {
+    @apply text-foreground;
+  }
+  
+  .prose ul > li::marker,
+  .prose ol > li::marker {
+    @apply text-primary;
+  }
+  
+  .prose a {
+    @apply transition-colors;
+  }
+  
+  /* Better spacing between sections */
+  .prose > * + * {
+    @apply mt-0;
+  }
+  
+  .prose > h2 + p,
+  .prose > h3 + p,
+  .prose > h4 + p {
+    @apply mt-3;
+  }
+
+  /* Blog article: premium reading width and spacing */
+  .blog-article.prose {
+    @apply max-w-[65ch];
+  }
+  .blog-article.prose p {
+    @apply text-[1.0625rem] leading-[1.75];
+  }
+}

@@ -65,14 +65,15 @@ export function generateArticleJSONLD({
   image?: string
   author?: string
 }) {
-  return {
+  const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || 'https://pictopicsearch.com'
+  const schema: Record<string, unknown> = {
     '@context': 'https://schema.org',
     '@type': 'Article',
     headline: title,
     description,
     url,
-    datePublished: publishedTime,
-    dateModified: modifiedTime || publishedTime,
+    datePublished: publishedTime || '',
+    dateModified: modifiedTime || publishedTime || '',
     author: {
       '@type': 'Person',
       name: author,
@@ -82,14 +83,19 @@ export function generateArticleJSONLD({
       name: 'PictoPicSearch',
       logo: {
         '@type': 'ImageObject',
-        url: `${process.env.NEXT_PUBLIC_SITE_URL || 'https://pictopicsearch.com'}/logo.png`,
+        url: `${siteUrl}/logo.png`,
       },
     },
-    image: image ? {
+  }
+  
+  if (image) {
+    schema.image = {
       '@type': 'ImageObject',
       url: image,
-    } : undefined,
+    }
   }
+  
+  return schema
 }
 
 export function generateBreadcrumbJSONLD(items: { name: string; url: string }[]) {
