@@ -25,6 +25,8 @@ const nextConfig = {
   },
   outputFileTracingIncludes: {
     '/blog/[slug]': ['./content/posts/**/*'],
+    '/sitemap': ['./content/posts/**/*'],
+    '/sitemap.xml': ['./content/posts/**/*'],
   },
 }
 

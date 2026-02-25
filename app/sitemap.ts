@@ -138,12 +138,18 @@ export default function sitemap(): MetadataRoute.Sitemap {
     priority: 0.7,
   }))
 
-  const blogPosts = getAllPosts().map(post => ({
-    url: `${siteUrl}/blog/${post.slug}`,
-    lastModified: post.frontmatter.date,
-    changeFrequency: 'monthly' as const,
-    priority: 0.6,
-  }))
+  let blogPosts: MetadataRoute.Sitemap = []
+  try {
+    blogPosts = getAllPosts().map(post => ({
+      url: `${siteUrl}/blog/${post.slug}`,
+      lastModified: post.frontmatter.date,
+      changeFrequency: 'monthly' as const,
+      priority: 0.6,
+    }))
+  } catch {
+    // If content is unavailable (e.g. serverless bundle), return sitemap without blog posts
+    // to avoid 5xx and ensure Search Console can at least index static + provider + use-case URLs
+  }
 
   return [
     ...staticPages,
