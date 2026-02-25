@@ -11,17 +11,8 @@ const nextConfig = {
       },
     ],
   },
-  webpack: (config, { isServer }) => {
-    // Ensure single React version for both server and client
-    config.resolve.alias = {
-      ...config.resolve.alias,
-      react: require.resolve('react'),
-      'react-dom': require.resolve('react-dom'),
-      'react/jsx-runtime': require.resolve('react/jsx-runtime'),
-      'react/jsx-dev-runtime': require.resolve('react/jsx-dev-runtime'),
-    }
-    return config
-  },
+  // Use Turbopack (Next 16 default). Custom webpack React aliases broke react/jsx-runtime resolution on Vercel.
+  turbopack: {},
   outputFileTracingIncludes: {
     '/blog/[slug]': ['./content/posts/**/*'],
     '/sitemap': ['./content/posts/**/*'],
