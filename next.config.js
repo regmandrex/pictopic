@@ -4,7 +4,6 @@ const nextConfig = {
   // Required for Turbopack compatibility with next-mdx-remote
   transpilePackages: ['next-mdx-remote'],
   images: {
-    domains: ['images.unsplash.com', 'via.placeholder.com'],
     remotePatterns: [
       {
         protocol: 'https',
