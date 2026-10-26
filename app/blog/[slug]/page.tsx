@@ -155,7 +155,7 @@ export default async function BlogPostPage({ params }: { params: Promise<{ slug:
             prose-blockquote:border-l-4 prose-blockquote:border-primary prose-blockquote:pl-6 prose-blockquote:pr-5 prose-blockquote:py-5 prose-blockquote:italic prose-blockquote:my-9 prose-blockquote:bg-muted/50 prose-blockquote:rounded-r prose-blockquote:text-[17px] prose-blockquote:shadow-sm
             prose-code:bg-muted prose-code:text-foreground prose-code:px-2 prose-code:py-1 prose-code:rounded prose-code:text-sm prose-code:font-mono prose-code:font-semibold
             prose-pre:bg-muted prose-pre:p-5 prose-pre:rounded-lg prose-pre:overflow-x-auto prose-pre:my-9 prose-pre:border prose-pre:border-border prose-pre:shadow-sm
-            prose-a:text-primary prose-a:no-underline hover:prose-a:underline prose-a:font-medium prose-a:transition-colors
+            prose-a:text-primary prose-a:underline prose-a:underline-offset-4 prose-a:font-medium prose-a:transition-colors
             prose-strong:font-semibold prose-strong:text-foreground
             prose-hr:my-12 prose-hr:border-border prose-hr:border-t-2
             prose-img:rounded-lg prose-img:my-9 prose-img:shadow-xl prose-img:border prose-img:border-border
